@@ -1,0 +1,34 @@
+name: Update Language Pie Chart
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily
+  push:
+    branches:
+      - main
+
+jobs:
+  update-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install requests matplotlib PyGithub
+
+      - name: Generate Language Pie Chart
+        run: python generate_piechart.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add language_piechart.png
+          git commit -m "Updated language usage pie chart"
+          git push
