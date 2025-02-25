@@ -4,7 +4,7 @@ from github import Github
 import os
 
 # Get your GitHub username
-GITHUB_USERNAME = "YOUR_GITHUB_USERNAME"  # Replace with your GitHub username
+GITHUB_USERNAME = "s-tirmizi"  
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # GitHub Action will use this token
 
 # Initialize GitHub API
